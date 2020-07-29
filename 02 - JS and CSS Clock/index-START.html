@@ -79,14 +79,11 @@
     function timeToDegrees(time_int, time_type){
       if (time_type === "hour") {
         return 90 + 360 * time_int / 12;
-      } else if (time_type === "min") {
-        return 90 + 360 * time_int / 60;
-      } else if (time_type === "sec") {
-        return 90 + 360 * time_int / 60;
       } else {
-        return 0;
+        return 90 + 360 * time_int / 60;
       }
     };
+
     function setClock () {
       // Get initial time
       const curr_date = new Date();
@@ -94,20 +91,18 @@
       const curr_min = curr_date.getMinutes();
       const curr_sec = curr_date.getSeconds();
 
-
       // Set initial position of hands
       const rotate_hour = timeToDegrees(curr_hour, 'hour');
       const rotate_min = timeToDegrees(curr_min, 'min');
       const rotate_sec = timeToDegrees(curr_sec, 'sec');
 
-      hourHand.style.transform = "rotate(" + rotate_hour + "deg)";
-      minHand.style.transform = "rotate(" + rotate_min + "deg)";
-      secHand.style.transform = "rotate(" + rotate_sec + "deg)";
+      hourHand.style.transform = `rotate(${rotate_hour}deg)`;
+      minHand.style.transform = `rotate(${rotate_min}deg)`;
+      secHand.style.transform = `rotate(${rotate_sec}deg)`;
     }
+
     // Rotate each hand
-    setInterval(function() {
-      setClock();
-    }, 1000)
+    setInterval(setClock, 1000)
   </script>
 </body>
 </html>
