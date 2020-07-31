@@ -59,11 +59,16 @@
 
 <script>
   function playAudio(e) {
-    const audio = document.querySelector("audio[data-key='" + e.keyCode + "']");
+    const audio = document.querySelector("audio[data-key='" + e.keyCode + "']");if (!audio) return;
+    if (!audio) return;
     audio.play();
   };
 
-
+  function startKey(e) {
+    const key = document.querySelector("div[data-key='" + event.keyCode + "']")
+    if (!key) return;
+    key.classList.add('playing');
+  };  
   // Listen for keydown
   window.addEventListener("keydown", event => {
     // Play audio tag with data-key matching the keyCode of pressed key
@@ -71,10 +76,12 @@
 
     // Flash the key
     // Add the playing class to the matching div
-    document.querySelector("div[data-key='" + event.keyCode + "']").classList.add("playing");
+    startKey(event);
     // Remove the playing class from the matching div, after 100ms
     setTimeout(function(){
-      document.querySelector("div[data-key='" + event.keyCode + "']").classList.remove("playing");
+      document.querySelector(
+        "div[data-key='" + event.keyCode + "']"
+      ).classList.remove("playing");
     }, 100);
   });
 </script>
